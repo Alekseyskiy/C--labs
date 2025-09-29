@@ -40,11 +40,13 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Program.cs"/>
+        <Compile Include="lab2\enums\PlayerState.cs" />
+        <Compile Include="lab2\model\Cat.cs" />
+        <Compile Include="lab2\model\Game.cs" />
+        <Compile Include="lab2\model\Mouse.cs" />
+        <Compile Include="lab2\model\Player.cs" />
+        <Compile Include="lab2\Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="lab2\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
