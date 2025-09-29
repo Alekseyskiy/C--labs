@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using IPLabs.lab2.enums;
 
 namespace IPLabs.lab2.model
@@ -20,7 +19,7 @@ namespace IPLabs.lab2.model
             DistanceTraveled = 0;
         }
         
-        public void SetInitialPosition(int pos, int boardSize)
+        public virtual void SetInitialPosition(int pos, int boardSize)
         {
             if (boardSize <= 0) throw new ArgumentException("boardSize must be positive");
             if (pos < 1 || pos > boardSize) throw new ArgumentOutOfRangeException(nameof(pos));
@@ -35,13 +34,21 @@ namespace IPLabs.lab2.model
 
             DistanceTraveled += Math.Abs((long)delta);
 
-            long baseIndex = (Position.Value - 1) + delta;
+            long baseIndex = (Position.Value - 1L) + delta;
             long mod = ((baseIndex % boardSize) + boardSize) % boardSize;
-            int newPos = (int)(mod + 11);
+            int newPos = (int)(mod + 1);
             Position = newPos;
             return newPos;
         }
         
-        
+        public void MarkWinner() => State = PlayerState.Winner;
+        public void MarkLoser() => State = PlayerState.Loser;
+
+        public string PositionOrQuestion() => Position.HasValue ? Position.Value.ToString() : "??";
+
+        public override string ToString()
+        {
+            return $"{Name}: pos={(Position.HasValue? Position.Value.ToString() : "??")}, state={State}, dist={DistanceTraveled}";
+        }
     }
 }
