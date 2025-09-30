@@ -8,13 +8,17 @@ namespace IPLabs.lab2.model
     public class Game
     {
         public int BoardSize { get; }
+        
         public Cat Cat { get; }
+        
         public Mouse Mouse { get; }
 
         public int? CaughtAtCell { get; private set; }
+        
         public bool IsOver { get; private set; }
 
         private readonly List<string> _printLines = new List<string>();
+        
         public IEnumerable<string> PrintLines => _printLines.AsReadOnly();
 
         public Game(int boardSize)
@@ -27,14 +31,14 @@ namespace IPLabs.lab2.model
             IsOver = false;
         }
         
-        
-        
         public string ProcessCommandLine(string line)
         {
             if (IsOver) return null;
             if (string.IsNullOrWhiteSpace(line)) return null;
+            
             var parts = line.Trim().Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length == 0) return null;
+            
             string cmd = parts[0].ToUpperInvariant();
 
             if (cmd == "P")
@@ -137,7 +141,6 @@ namespace IPLabs.lab2.model
             return Math.Min(diff, BoardSize - diff);
         }
         
-        //print result
         public IEnumerable<string> GetFinalLines()
         {
             var lines = new List<string>();
