@@ -34,7 +34,7 @@ namespace IPLabs.lab2
                 Console.WriteLine(r);
 
             Console.WriteLine("\nFinal log:");
-            foreach (var line in game.GetFinalLogLines())
+            foreach (var line in game.GetFinalLines())
                 Console.WriteLine(line);
         }
     }
