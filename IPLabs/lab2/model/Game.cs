@@ -19,8 +19,6 @@ namespace IPLabs.lab2.model
 
         private readonly List<string> _printLines = new List<string>();
         
-        public IEnumerable<string> PrintLines => _printLines.AsReadOnly();
-
         public Game(int boardSize)
         {
             if (boardSize <= 0 || boardSize > 10000) throw new ArgumentOutOfRangeException(nameof(boardSize));
@@ -36,7 +34,7 @@ namespace IPLabs.lab2.model
             if (IsOver) return null;
             if (string.IsNullOrWhiteSpace(line)) return null;
             
-            var parts = line.Trim().Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = line.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length == 0) return null;
             
             string cmd = parts[0].ToUpperInvariant();
@@ -134,7 +132,7 @@ namespace IPLabs.lab2.model
 
             return $"{catPos,6}{mousePos,8}{distance,10}";
         }
-
+        
         private int ComputeDistance()
         {
             int diff = Math.Abs(Cat.Position.Value - Mouse.Position.Value);

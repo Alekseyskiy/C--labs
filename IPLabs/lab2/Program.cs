@@ -29,10 +29,6 @@ namespace IPLabs.lab2
                 if (game.IsOver) break; 
             }
 
-            Console.WriteLine("Print rows:");
-            foreach (var r in game.PrintLines)
-                Console.WriteLine(r);
-
             Console.WriteLine("\nFinal log:");
             foreach (var line in game.GetFinalLines())
                 Console.WriteLine(line);
