@@ -48,6 +48,14 @@
         <Compile Include="lab2\Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="lab2\files\1.ChaseData.txt" />
+      <Content Include="lab2\files\1.PursuitLog.txt" />
+      <Content Include="lab2\files\2.ChaseData.txt" />
+      <Content Include="lab2\files\2.PursuitLog.txt" />
+      <Content Include="lab2\files\3.ChaseData.txt" />
+      <Content Include="lab2\files\3.PursuitLog.txt" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
