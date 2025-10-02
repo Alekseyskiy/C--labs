@@ -12,8 +12,12 @@ namespace IPLabs.lab2.model
         public Cat Cat { get; }
         
         public Mouse Mouse { get; }
+        
+        public Dog  Dog { get; }
 
-        public int? CaughtAtCell { get; private set; }
+        public int? CaughtAtCellCat { get; private set; }
+        
+        public int? CaughtAtCellMouse { get; private set; }
         
         public bool IsOver { get; private set; }
 
@@ -25,7 +29,9 @@ namespace IPLabs.lab2.model
             BoardSize = boardSize;
             Cat = new Cat();
             Mouse = new Mouse();
-            CaughtAtCell = null;
+            Dog = new Dog();
+            CaughtAtCellCat = null;
+            CaughtAtCellMouse = null;
             IsOver = false;
         }
         
@@ -46,7 +52,7 @@ namespace IPLabs.lab2.model
                 return row;
             }
 
-            if (cmd != "M" && cmd != "C")
+            if (cmd != "M" && cmd != "C" && cmd != "D")
                 throw new ArgumentException($"Unknown command: {cmd}");
 
             if (parts.Length < 2) throw new ArgumentException("Move command missing value");
@@ -56,8 +62,10 @@ namespace IPLabs.lab2.model
 
             if (cmd == "M")
                 ProcessMouseCommand(value);
-            else
+            if (cmd == "C")
                 ProcessCatCommand(value);
+            else
+                ProcessDogCommand(value);
             return null;
         }
 
@@ -73,7 +81,22 @@ namespace IPLabs.lab2.model
             }
 
             TrySetPlayingStateIfBothPresent();
-            CheckCatch();
+            CheckCatchCatMouse();
+        }
+        
+        private void ProcessDogCommand(int value)
+        {
+            if (!Dog.Position.HasValue)
+            {
+                Dog.SetInitialPosition(NormalizeInitial(value), BoardSize);
+            }
+            else
+            {
+                Dog.Move(value, BoardSize);
+            }
+
+            TrySetPlayingStateIfBothPresent();
+            CheckCatchDogCat();
         }
 
         private void ProcessCatCommand(int value)
@@ -87,7 +110,7 @@ namespace IPLabs.lab2.model
                 Cat.Move(value, BoardSize);
             }
             TrySetPlayingStateIfBothPresent();
-            CheckCatch();
+            CheckCatchCatMouse();
         }
 
         private int NormalizeInitial(int pos)
@@ -100,15 +123,31 @@ namespace IPLabs.lab2.model
 
         private void TrySetPlayingStateIfBothPresent()
         {
-            if (Cat.Position.HasValue && Mouse.Position.HasValue)
+            if (Cat.Position.HasValue && Mouse.Position.HasValue && Dog.Position.HasValue)
             {
                 Cat.State = PlayerState.Playing;
                 Mouse.State = PlayerState.Playing;
-                CheckCatch();
+                Dog.State = PlayerState.Playing;
+                CheckCatchDogCat();
+                CheckCatchCatMouse();
             }
         }
 
-        private void CheckCatch()
+        private void CheckCatchDogCat()
+        {
+            if (!Cat.Position.HasValue || !Dog.Position.HasValue) return;
+            if (IsOver) return;
+
+            if (Cat.Position.Value == Dog.Position.Value)
+            {
+                IsOver = true;
+                CaughtAtCellCat = Cat.Position.Value;
+                Dog.MarkWinner();
+                Cat.MarkLoser();
+            }
+        }
+
+        private void CheckCatchCatMouse()
         {
             if (!Cat.Position.HasValue || !Mouse.Position.HasValue) return;
             if (IsOver) return;
@@ -116,9 +155,9 @@ namespace IPLabs.lab2.model
             if (Cat.Position.Value == Mouse.Position.Value)
             {
                 IsOver = true;
-                CaughtAtCell = Cat.Position.Value;
+                CaughtAtCellMouse = Mouse.Position.Value;
                 Cat.MarkWinner();
-                Mouse.MarkLoser();
+                Dog.MarkLoser();
             }
         }
 
@@ -159,11 +198,17 @@ namespace IPLabs.lab2.model
             lines.Add($"Mouse distance traveled: {Mouse.DistanceTraveled}");
             lines.Add(string.Empty);
 
-            if (IsOver && CaughtAtCell.HasValue)
-                lines.Add($"Mouse caught at: {CaughtAtCell.Value}");
+            if (IsOver && CaughtAtCellCat.HasValue)
+                Console.WriteLine("Dog caught cat");
+            if (IsOver && CaughtAtCellMouse.HasValue)
+            {
+                lines.Add($"Mouse caught at: {CaughtAtCellMouse.Value}");
+            }
             else
-                lines.Add("Mouse evaded Cat");
-
+            {
+                lines.Add("Mouse evaded Cat and Cat evaded Dog");
+            }
+                
             return lines;
         }
     }
