@@ -36,7 +36,10 @@ namespace IPLabs.lab2
                     if (lineIndex >= allLines.Length)
                         throw new Exception("File contains no board size.");
 
-                    if (!int.TryParse(allLines[lineIndex].Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out int boardSize))
+                    if (!int.TryParse(allLines[lineIndex].Trim(),
+                            NumberStyles.Integer,
+                            CultureInfo.InvariantCulture,
+                            out int boardSize))
                         throw new Exception("Invalid board size in input file.");
 
                     var game = new Game(boardSize);
