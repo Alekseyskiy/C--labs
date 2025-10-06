@@ -62,10 +62,11 @@ namespace IPLabs.lab2.model
 
             if (cmd == "M")
                 ProcessMouseCommand(value);
-            if (cmd == "C")
+            else if (cmd == "C")
                 ProcessCatCommand(value);
             else
                 ProcessDogCommand(value);
+            
             return null;
         }
 
@@ -144,6 +145,7 @@ namespace IPLabs.lab2.model
                 CaughtAtCellCat = Cat.Position.Value;
                 Dog.MarkWinner();
                 Cat.MarkLoser();
+                Console.WriteLine("Dog caught cat");
             }
         }
 
@@ -198,8 +200,7 @@ namespace IPLabs.lab2.model
             lines.Add($"Mouse distance traveled: {Mouse.DistanceTraveled}");
             lines.Add(string.Empty);
 
-            if (IsOver && CaughtAtCellCat.HasValue)
-                Console.WriteLine("Dog caught cat");
+            
             if (IsOver && CaughtAtCellMouse.HasValue)
             {
                 lines.Add($"Mouse caught at: {CaughtAtCellMouse.Value}");
