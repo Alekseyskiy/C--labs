@@ -144,6 +144,7 @@ namespace IPLabs.lab2.model
                 IsOver = true;
                 CaughtAtCellCat = Cat.Position.Value;
                 Dog.MarkWinner();
+                Mouse.MarkWinner();
                 Cat.MarkLoser();
                 Console.WriteLine("Dog caught cat");
             }
@@ -160,6 +161,7 @@ namespace IPLabs.lab2.model
                 CaughtAtCellMouse = Mouse.Position.Value;
                 Cat.MarkWinner();
                 Dog.MarkLoser();
+                Mouse.MarkLoser();
             }
         }
 
