@@ -1,7 +1,7 @@
 namespace IPLabs.lab3.Models
 {
-    public class Token
+    public interface Token
     {
-        
+        string Text { get; set; }
     }
 }
