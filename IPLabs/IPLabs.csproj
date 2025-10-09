@@ -47,6 +47,13 @@
         <Compile Include="lab2\model\Mouse.cs" />
         <Compile Include="lab2\model\Player.cs" />
         <Compile Include="lab2\Program.cs" />
+        <Compile Include="lab3\Models\Punctuation.cs" />
+        <Compile Include="lab3\Models\Sentence.cs" />
+        <Compile Include="lab3\Models\Text.cs" />
+        <Compile Include="lab3\Models\Token.cs" />
+        <Compile Include="lab3\Models\Word.cs" />
+        <Compile Include="lab3\Program.cs" />
+        <Compile Include="lab3\Services\TextParser.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
