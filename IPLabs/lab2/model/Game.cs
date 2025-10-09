@@ -81,7 +81,7 @@ namespace IPLabs.lab2.model
                 Mouse.Move(value, BoardSize);
             }
 
-            TrySetPlayingStateIfBothPresent();
+            TrySetPlayingStateIfAllPresent();
             CheckCatchCatMouse();
         }
         
@@ -96,7 +96,7 @@ namespace IPLabs.lab2.model
                 Dog.Move(value, BoardSize);
             }
 
-            TrySetPlayingStateIfBothPresent();
+            TrySetPlayingStateIfAllPresent();
             CheckCatchDogCat();
         }
 
@@ -110,7 +110,7 @@ namespace IPLabs.lab2.model
             {
                 Cat.Move(value, BoardSize);
             }
-            TrySetPlayingStateIfBothPresent();
+            TrySetPlayingStateIfAllPresent();
             CheckCatchCatMouse();
         }
 
@@ -122,7 +122,7 @@ namespace IPLabs.lab2.model
             return (int)(mod + 1);
         }
 
-        private void TrySetPlayingStateIfBothPresent()
+        private void TrySetPlayingStateIfAllPresent()
         {
             if (Cat.Position.HasValue && Mouse.Position.HasValue && Dog.Position.HasValue)
             {
