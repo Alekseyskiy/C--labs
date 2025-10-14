@@ -12,5 +12,18 @@ namespace IPLabs.lab3.Models
 
         public IEnumerable<Sentence> GetSentencesOrderedByLength() =>
             Sentences.OrderBy(s => s.DisplayLength);
+        
+        public void RemoveWordsStartingWithConsonant(int length)
+        {
+            string consonants = "бвгджзйклмнпрстфхцчшщ";
+            foreach (var sentence in Sentences)
+            {
+                sentence.Tokens.RemoveAll(t =>
+                    t is Word w &&
+                    w.Text.Length == length &&
+                    consonants.Contains(char.ToLower(w.Text[0])));
+            }
+        }
+        
     }
 }
