@@ -22,6 +22,11 @@ namespace IPLabs.lab3
             foreach (var sentence in text.GetSentencesOrderedByLength())
                 Console.WriteLine(sentence);
             Console.WriteLine();
+            
+            Console.WriteLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
+            text.RemoveWordsStartingWithConsonant(4);
+            Console.WriteLine(text);
+            Console.WriteLine();
         }
     }
 }
