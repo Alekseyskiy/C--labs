@@ -32,7 +32,7 @@ namespace IPLabs.lab3.Models
             var sentence = Sentences[index];
             for (int i = 0; i < sentence.Tokens.Count; i++)
             {
-                if (sentence.Tokens[i] is Word w && w.Text.Length == length)
+                if (sentence.Tokens[i] is Word w && w.Text.Trim().Length == length)
                     sentence.Tokens[i] = new Word(replacement);
             }
         }

@@ -15,7 +15,7 @@ namespace IPLabs.lab3.Models
         
         public override string ToString()
         {
-            var result = string.Join("", Tokens.Select(t => t.Text));
+            var result = string.Join(" ", Tokens.Select(t => t.Text));
             result = result.Replace(" ,", ",").Replace(" .", ".").Replace(" ?", "?");
             return result.Trim();
         }
