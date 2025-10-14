@@ -8,6 +8,9 @@ namespace IPLabs.lab3
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+
             string input = "Привет, как дела? Это тестовое предложение. Как слышно.";
 
             TextParser parser = new TextParser();
