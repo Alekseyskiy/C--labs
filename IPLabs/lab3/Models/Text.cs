@@ -25,6 +25,17 @@ namespace IPLabs.lab3.Models
             }
         }
         
+        public void ReplaceWordsInSentence(int index, int length, string replacement)
+        {
+            if (index < 0 || index >= Sentences.Count) return;
+
+            var sentence = Sentences[index];
+            for (int i = 0; i < sentence.Tokens.Count; i++)
+            {
+                if (sentence.Tokens[i] is Word w && w.Text.Length == length)
+                    sentence.Tokens[i] = new Word(replacement);
+            }
+        }
         
         public override string ToString() => string.Join(" ", Sentences.Select(s => s.ToString()));
     }
