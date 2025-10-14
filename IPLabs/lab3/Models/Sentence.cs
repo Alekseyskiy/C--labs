@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IPLabs.lab3.Models
 {
@@ -12,6 +13,11 @@ namespace IPLabs.lab3.Models
 
         public bool IsQuestion => ToString().TrimEnd().EndsWith("?");
         
-        public override string ToString() => Tokens.ToString();
+        public override string ToString()
+        {
+            var result = string.Join("", Tokens.Select(t => t.Text));
+            result = result.Replace(" ,", ",").Replace(" .", ".").Replace(" ?", "?");
+            return result.Trim();
+        }
     }
 }

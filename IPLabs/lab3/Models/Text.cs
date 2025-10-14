@@ -25,5 +25,7 @@ namespace IPLabs.lab3.Models
             }
         }
         
+        
+        public override string ToString() => string.Join(" ", Sentences.Select(s => s.ToString()));
     }
 }
