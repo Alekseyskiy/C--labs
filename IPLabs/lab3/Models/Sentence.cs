@@ -6,8 +6,8 @@ namespace IPLabs.lab3.Models
     public class Sentence
     {
         public List<Token> Tokens { get; set; } = new();
-        
-        public int WordCount { get; set; }
+
+        public int WordCount => Tokens.OfType<Word>().Count();
         
         public int DisplayLength => ToString().Length;
 
