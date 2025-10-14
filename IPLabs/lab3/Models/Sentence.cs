@@ -4,7 +4,7 @@ namespace IPLabs.lab3.Models
 {
     public class Sentence
     {
-        public List<Token> Tokens { get; set; }
+        public List<Token> Tokens { get; set; } = new();
         
         public int WordCount { get; set; }
         
