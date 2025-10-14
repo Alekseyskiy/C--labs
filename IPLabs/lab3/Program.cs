@@ -11,7 +11,7 @@ namespace IPLabs.lab3
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.InputEncoding = System.Text.Encoding.UTF8;
 
-            string input = "Привет, как дела? Это тестовое предложение. Как слышно.";
+            string input = "Привет, как дела? Это тест предложение. Как слышно. Слово из пяти букв.";
 
             TextParser parser = new TextParser();
             Text text = parser.Parse(input);
@@ -28,6 +28,11 @@ namespace IPLabs.lab3
             
             Console.WriteLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
             text.RemoveWordsStartingWithConsonant(4);
+            Console.WriteLine(text);
+            Console.WriteLine();
+            
+            Console.WriteLine("4. Заменить слова заданной длины (5) в предложении:");
+            text.ReplaceWordsInSentence(3, 5, "замена");
             Console.WriteLine(text);
             Console.WriteLine();
         }
