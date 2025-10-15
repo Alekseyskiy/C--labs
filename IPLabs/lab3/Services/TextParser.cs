@@ -14,7 +14,7 @@ namespace IPLabs.lab3.Services
             foreach (string raw in rawSentences)
             {
                 var sentence = new Sentence();
-                var tokens = Regex.Matches(raw, @"\w+|[^\w\s]+");
+                var tokens = Regex.Matches(raw, @"[\w-]+|[^\w\s]+");
 
                 foreach (Match m in tokens)
                 {
