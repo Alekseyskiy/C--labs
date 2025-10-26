@@ -1,0 +1,77 @@
+﻿Исходный текст:
+Привет, как дела? Это тест предложение. Как слышно. Слово из пяти букв.
+
+1. Предложения гле вопросительное с N словами (пример N = 3):
+Привет, как дела?
+
+2. Предложения по возрастагию длины:
+Как слышно.
+Привет, как дела?
+Слово из пяти букв.
+Это тест предложение.
+
+3. Удалить слова заданной длины (4) начинающиеся с согласной:
+Привет, как? Это предложение. Как слышно. Слово из.
+
+4. Заменить слова заданной длины (5) в предложении:
+Привет, как? Это предложение. Как слышно. замена из.
+
+5. XML-представление
+<?xml version="1.0" encoding="utf-16"?>
+<Text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sentence>
+    <Tokens>
+      <Word>
+        <Text>Привет</Text>
+      </Word>
+      <Punctuation>
+        <Text>,</Text>
+      </Punctuation>
+      <Word>
+        <Text>как</Text>
+      </Word>
+      <Punctuation>
+        <Text>?</Text>
+      </Punctuation>
+    </Tokens>
+  </Sentence>
+  <Sentence>
+    <Tokens>
+      <Word>
+        <Text>Это</Text>
+      </Word>
+      <Word>
+        <Text>предложение</Text>
+      </Word>
+      <Punctuation>
+        <Text>.</Text>
+      </Punctuation>
+    </Tokens>
+  </Sentence>
+  <Sentence>
+    <Tokens>
+      <Word>
+        <Text>Как</Text>
+      </Word>
+      <Word>
+        <Text>слышно</Text>
+      </Word>
+      <Punctuation>
+        <Text>.</Text>
+      </Punctuation>
+    </Tokens>
+  </Sentence>
+  <Sentence>
+    <Tokens>
+      <Word>
+        <Text>замена</Text>
+      </Word>
+      <Word>
+        <Text>из</Text>
+      </Word>
+      <Punctuation>
+        <Text>.</Text>
+      </Punctuation>
+    </Tokens>
+  </Sentence>
+</Text>
