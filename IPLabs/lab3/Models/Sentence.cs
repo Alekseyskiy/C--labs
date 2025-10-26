@@ -7,7 +7,7 @@ namespace IPLabs.lab3.Models
     public class Sentence
     {
         [XmlElement("Token")]
-        public List<Token> Tokens { get; } = new();
+        public List<object> Tokens { get; } = new();
 
         [XmlIgnore] public int WordCount => Tokens.OfType<Word>().Count();
         
@@ -17,8 +17,21 @@ namespace IPLabs.lab3.Models
         
         public override string ToString()
         {
-            var result = string.Join(" ", Tokens.Select(t => t.Text));
-            result = result.Replace(" ,", ",").Replace(" .", ".").Replace(" ?", "?");
+            var result = string.Join(" ", Tokens.Select(t =>
+            {
+                switch (t)
+                {
+                    case Word w: return w.Text;
+                    case Punctuation p: return p.Text;
+                    default: return t?.ToString() ?? "";
+                }
+            }));
+
+            result = result
+                .Replace(" ,", ",")
+                .Replace(" .", ".")
+                .Replace(" ?", "?")
+                .Replace(" !", "!");
             return result.Trim();
         }
     }
