@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace IPLabs.lab3.Models
 {
+    [XmlRoot("Text")]
     public class Text
     {
+        [XmlElement("Sentence")]
         public List<Sentence> Sentences { get; } = new();
 
         public IEnumerable<Sentence> GetQuestionSentencesWithWordCount(int count) =>

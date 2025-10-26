@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace IPLabs.lab3.Models
 {
     public class Sentence
     {
+        [XmlElement("Token")]
         public List<Token> Tokens { get; } = new();
 
-        public int WordCount => Tokens.OfType<Word>().Count();
+        [XmlIgnore] public int WordCount => Tokens.OfType<Word>().Count();
         
-        public int DisplayLength => ToString().Length;
+        [XmlIgnore] public int DisplayLength => ToString().Length;
 
-        public bool IsQuestion => ToString().TrimEnd().EndsWith("?");
+        [XmlIgnore] public bool IsQuestion => ToString().TrimEnd().EndsWith("?");
         
         public override string ToString()
         {
