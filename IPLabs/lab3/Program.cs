@@ -22,6 +22,11 @@ namespace IPLabs.lab3
                  Console.WriteLine("Input file not found");
              }
              
+             if (!File.Exists(outputPath))
+             {
+                 Console.WriteLine("Output file not found");
+             }
+             
              string input = File.ReadAllText(inputPath);
         
              TextParser parser = new TextParser();
@@ -33,22 +38,22 @@ namespace IPLabs.lab3
              sb.AppendLine(input);
              sb.AppendLine();
              
-             Console.WriteLine("1. Предложения гле вопросительное с N словами (пример N = 3):");
+             sb.AppendLine("1. Предложения гле вопросительное с N словами (пример N = 3):");
              foreach (var sentence in text.GetQuestionSentencesWithWordCount(3)) 
                  sb.AppendLine(sentence.ToString());
              sb.AppendLine();
              
-             Console.WriteLine("2. Предложения по возрастагию длины:");
+             sb.AppendLine("2. Предложения по возрастагию длины:");
              foreach (var sentence in text.GetSentencesOrderedByLength())
                  sb.AppendLine(sentence.ToString());
              sb.AppendLine();
              
-             Console.WriteLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
+             sb.AppendLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
              text.RemoveWordsStartingWithConsonant(4);
              sb.AppendLine(text.ToString());
              sb.AppendLine();
              
-             Console.WriteLine("4. Заменить слова заданной длины (5) в предложении:");
+             sb.AppendLine("4. Заменить слова заданной длины (5) в предложении:");
              text.ReplaceWordsInSentence(3, 5, "замена");
              sb.AppendLine(text.ToString());
              sb.AppendLine();
@@ -62,6 +67,8 @@ namespace IPLabs.lab3
              }
              
              File.WriteAllText(outputPath, sb.ToString(), Encoding.UTF8);
+             
+             Console.WriteLine("Всё записано в output.txt");
         }
     }
 }
