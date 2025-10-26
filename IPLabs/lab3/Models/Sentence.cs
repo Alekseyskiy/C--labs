@@ -4,9 +4,14 @@ using System.Xml.Serialization;
 
 namespace IPLabs.lab3.Models
 {
+    
+    [XmlInclude(typeof(Word))]
+    [XmlInclude(typeof(Punctuation))]
     public class Sentence
     {
-        [XmlElement("Token")]
+        [XmlArray("Tokens")]
+        [XmlArrayItem("Word", typeof(Word))]
+        [XmlArrayItem("Punctuation", typeof(Punctuation))]
         public List<object> Tokens { get; } = new();
 
         [XmlIgnore] public int WordCount => Tokens.OfType<Word>().Count();
