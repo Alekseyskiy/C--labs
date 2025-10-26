@@ -14,37 +14,54 @@ namespace IPLabs.lab3
              Console.OutputEncoding = Encoding.UTF8;
              Console.InputEncoding = Encoding.UTF8;
         
-             string input = "Привет, как дела? Это тест предложение. Как слышно. Слово из пяти букв.";
+             string inputPath = @"C:\Users\ASUS\RiderProjects\IPLabs\IPLabs\lab3\files\input.txt";
+             string outputPath = @"C:\Users\ASUS\RiderProjects\IPLabs\IPLabs\lab3\files\output.txt";
+
+             if (!File.Exists(inputPath))
+             {
+                 Console.WriteLine("Input file not found");
+             }
+             
+             string input = File.ReadAllText(inputPath);
         
              TextParser parser = new TextParser();
              Text text = parser.Parse(input);
              
+             StringBuilder sb = new StringBuilder();
+
+             sb.AppendLine("Исходный текст:");
+             sb.AppendLine(input);
+             sb.AppendLine();
+             
              Console.WriteLine("1. Предложения гле вопросительное с N словами (пример N = 3):");
              foreach (var sentence in text.GetQuestionSentencesWithWordCount(3)) 
-                 Console.WriteLine(sentence);
-             Console.WriteLine();
+                 sb.AppendLine(sentence.ToString());
+             sb.AppendLine();
              
              Console.WriteLine("2. Предложения по возрастагию длины:");
              foreach (var sentence in text.GetSentencesOrderedByLength())
-                 Console.WriteLine(sentence);
-             Console.WriteLine();
+                 sb.AppendLine(sentence.ToString());
+             sb.AppendLine();
              
              Console.WriteLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
              text.RemoveWordsStartingWithConsonant(4);
-             Console.WriteLine(text);
-             Console.WriteLine();
+             sb.AppendLine(text.ToString());
+             sb.AppendLine();
              
              Console.WriteLine("4. Заменить слова заданной длины (5) в предложении:");
              text.ReplaceWordsInSentence(3, 5, "замена");
-             Console.WriteLine(text);
-             Console.WriteLine();
-             
+             sb.AppendLine(text.ToString());
+             sb.AppendLine();
+
+             sb.AppendLine("5. XML-представление");
              var serializer = new XmlSerializer(typeof(Text));
-             using var writer = new StringWriter();
-             serializer.Serialize(writer, text);
+             using (var writer = new StringWriter())
+             {
+                 serializer.Serialize(writer, text);
+                 sb.AppendLine(writer.ToString());   
+             }
              
-             Console.WriteLine("XML-представление:");
-             Console.WriteLine(writer.ToString());
+             File.WriteAllText(outputPath, sb.ToString(), Encoding.UTF8);
         }
     }
 }
