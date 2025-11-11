@@ -16,12 +16,6 @@ namespace IPLabs.lab3.Models
         public List<Word> WordsForXml
         {
             get => Tokens.OfType<Word>().ToList();
-            set
-            {
-                Tokens.Clear();
-                if (value != null)
-                    Tokens.AddRange(value);
-            }
         }
 
         [XmlIgnore] public int WordCount => Tokens.OfType<Word>().Count();
