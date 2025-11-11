@@ -63,7 +63,12 @@ namespace IPLabs.lab3
              sb.AppendLine(text.ToString());
              sb.AppendLine();
 
-             sb.AppendLine("6. XML-представление");
+             sb.AppendLine("6. Текст без стоп-слов:");
+             text.RemoveStopWords();
+             sb.AppendLine(text.ToString());
+             sb.AppendLine();
+
+             sb.AppendLine("7. XML-представление");
              var serializer = new XmlSerializer(typeof(Text));
              using (var writer = new StringWriter())
              {

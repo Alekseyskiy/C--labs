@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -52,6 +53,22 @@ namespace IPLabs.lab3.Models
             {
                 if (sentence.Tokens[i] is Word w && w.Text.Trim().Length == length)
                     sentence.Tokens[i] = new Word(replacement);
+            }
+        }
+
+        public void RemoveStopWords()
+        {
+            string stopWordsFilePath = "C:\\Users\\ASUS\\RiderProjects\\IPLabs\\IPLabs\\lab3\\files\\stopwords_ru.txt";
+            
+            var stopWords = File.ReadAllLines(stopWordsFilePath)
+                .Select(l => l.Trim().ToLower())
+                .Where(l => !string.IsNullOrEmpty(l))
+                .ToHashSet();
+
+            foreach (var sentence in Sentences)
+            {
+                sentence.Tokens.RemoveAll(
+                    t => t is Word w && stopWords.Contains(w.Text.ToLower()));
             }
         }
         
