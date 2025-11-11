@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -10,11 +11,22 @@ namespace IPLabs.lab3.Models
         [XmlElement("Sentence")]
         public List<Sentence> Sentences { get; } = new();
 
-        public IEnumerable<Sentence> GetQuestionSentencesWithWordCount(int count) =>
-            Sentences.Where(s => s.IsQuestion && s.WordCount == count);
+        public IEnumerable<String> GetUniqueWordsInQuestionsByLength(int length)
+        {
+            return Sentences
+                .Where(s => s.IsQuestion)
+                .SelectMany(s => s.Tokens.OfType<Word>())
+                .Select(w => w.Text.Trim().TrimEnd('.', ',', '!', '?')) // убираем лишние символы
+                .Where(w => w.Length == length)
+                .Select(w => w.ToLower())
+                .Distinct();
+        }
 
         public IEnumerable<Sentence> GetSentencesOrderedByLength() =>
             Sentences.OrderBy(s => s.DisplayLength);
+        
+        public IEnumerable<Sentence> GetSentencesOrderedByWordCount() =>
+            Sentences.OrderBy(s => s.WordCount);
         
         public void RemoveWordsStartingWithConsonant(int length)
         {
@@ -30,8 +42,11 @@ namespace IPLabs.lab3.Models
         
         public void ReplaceWordsInSentence(int index, int length, string replacement)
         {
-            if (index < 0 || index >= Sentences.Count) return;
-
+            if (index < 0 || index >= Sentences.Count || length < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            
             var sentence = Sentences[index];
             for (int i = 0; i < sentence.Tokens.Count; i++)
             {
