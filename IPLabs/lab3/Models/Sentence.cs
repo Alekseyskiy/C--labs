@@ -6,13 +6,23 @@ namespace IPLabs.lab3.Models
 {
     
     [XmlInclude(typeof(Word))]
-    [XmlInclude(typeof(Punctuation))]
     public class Sentence
     {
+        [XmlIgnore]
+        public List<object> Tokens { get; } = new();
+        
         [XmlArray("Tokens")]
         [XmlArrayItem("Word", typeof(Word))]
-        [XmlArrayItem("Punctuation", typeof(Punctuation))]
-        public List<object> Tokens { get; } = new();
+        public List<Word> WordsForXml
+        {
+            get => Tokens.OfType<Word>().ToList();
+            set
+            {
+                Tokens.Clear();
+                if (value != null)
+                    Tokens.AddRange(value);
+            }
+        }
 
         [XmlIgnore] public int WordCount => Tokens.OfType<Word>().Count();
         
