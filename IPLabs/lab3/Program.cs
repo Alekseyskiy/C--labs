@@ -37,9 +37,9 @@ namespace IPLabs.lab3
              sb.AppendLine("Исходный текст:");
              sb.AppendLine(input);
              sb.AppendLine();
-             
-             sb.AppendLine("1. Предложения гле вопросительное с N словами (пример N = 3):");
-             foreach (var sentence in text.GetQuestionSentencesWithWordCount(3)) 
+
+             sb.AppendLine("1. Предложения по возрастанию кол-ва слов в предложении");
+             foreach (Sentence sentence in text.GetSentencesOrderedByWordCount())
                  sb.AppendLine(sentence.ToString());
              sb.AppendLine();
              
@@ -48,17 +48,22 @@ namespace IPLabs.lab3
                  sb.AppendLine(sentence.ToString());
              sb.AppendLine();
              
-             sb.AppendLine("3. Удалить слова заданной длины (4) начинающиеся с согласной:");
-             text.RemoveWordsStartingWithConsonant(4);
+             sb.AppendLine("3. Вопросительные предложения где слова с длиной N (пример N = 3):");
+             foreach (var sentence in text.GetUniqueWordsInQuestionsByLength(3)) 
+                 sb.AppendLine(sentence);
+             sb.AppendLine();
+             
+             sb.AppendLine("4. Удалить слова заданной длины (5) начинающиеся с согласной:");
+             text.RemoveWordsStartingWithConsonant(5);
              sb.AppendLine(text.ToString());
              sb.AppendLine();
              
-             sb.AppendLine("4. Заменить слова заданной длины (5) в предложении:");
-             text.ReplaceWordsInSentence(3, 5, "замена");
+             sb.AppendLine("5. Заменить слова заданной длины (5) в предложении:");
+             text.ReplaceWordsInSentence(0, 3, "замена");
              sb.AppendLine(text.ToString());
              sb.AppendLine();
 
-             sb.AppendLine("5. XML-представление");
+             sb.AppendLine("6. XML-представление");
              var serializer = new XmlSerializer(typeof(Text));
              using (var writer = new StringWriter())
              {
