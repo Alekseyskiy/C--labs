@@ -17,7 +17,7 @@ namespace IPLabs.lab3.Models
             return Sentences
                 .Where(s => s.IsQuestion)
                 .SelectMany(s => s.Tokens.OfType<Word>())
-                .Select(w => w.Text.Trim().TrimEnd('.', ',', '!', '?')) // убираем лишние символы
+                .Select(w => w.Text.Trim().TrimEnd('.', ',', '!', '?'))
                 .Where(w => w.Length == length)
                 .Select(w => w.ToLower())
                 .Distinct();
