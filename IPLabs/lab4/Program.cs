@@ -28,6 +28,8 @@ public class Program
         }
 
         var concordance = processor.BuildConcordance(lines);
+        
+        Console.WriteLine("\n--- КОНКОРДАНС ---\n");
 
         foreach (var pair in concordance.OrderBy(p => p.Key))
         {
