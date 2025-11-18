@@ -27,7 +27,13 @@ public class Program
             lines.Add(input);
         }
 
-        var concordance = processor.BuildConcordance(lines);
+        var (chars, concordance) = processor.BuildConcordance(lines);
+        
+        Console.WriteLine("\n--- ПОДСЧЁТ СИМВОЛОВ ---\n");
+        foreach (var pair in chars.OrderBy(p => p.Key))
+        {
+            Console.WriteLine($"{pair.Key,-5} {pair.Value.Count}: {string.Join(" ", pair.Value.Lines)}");
+        }
         
         Console.WriteLine("\n--- КОНКОРДАНС ---\n");
 
