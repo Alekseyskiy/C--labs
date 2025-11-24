@@ -13,6 +13,7 @@
         <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +55,18 @@
         <Compile Include="lab3\Models\Word.cs" />
         <Compile Include="lab3\Program.cs" />
         <Compile Include="lab3\Services\TextParser.cs" />
+        <Compile Include="lab4\ConcordanceEntry.cs" />
+        <Compile Include="lab4\CountWords.cs" />
+        <Compile Include="lab4\Program.cs" />
+        <Compile Include="lab4\TextProcessor.cs" />
+        <Compile Include="lab5\Gift\Gift.cs" />
+        <Compile Include="lab5\Gift\SweetFactory.cs" />
+        <Compile Include="lab5\Program.cs" />
+        <Compile Include="lab5\Sweets\Candy\Candy.cs" />
+        <Compile Include="lab5\Sweets\Candy\CaramelCandy.cs" />
+        <Compile Include="lab5\Sweets\Candy\ChocolateCandy.cs" />
+        <Compile Include="lab5\Sweets\Cookie.cs" />
+        <Compile Include="lab5\Sweets\Sweet.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
@@ -62,6 +75,9 @@
       <Content Include="lab2\files\2.PursuitLog.txt" />
       <Content Include="lab2\files\3.ChaseData.txt" />
       <Content Include="lab2\files\3.PursuitLog.txt" />
+      <Content Include="lab3\files\input.txt" />
+      <Content Include="lab3\files\output.txt" />
+      <Content Include="lab3\files\stopwords_ru.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

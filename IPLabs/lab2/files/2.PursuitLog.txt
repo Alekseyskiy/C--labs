@@ -19,4 +19,4 @@ Cat and Mouse
 Cat distance traveled: 7
 Mouse distance traveled: 29
 
-Mouse evaded Cat
+Mouse evaded Cat and Cat evaded Dog

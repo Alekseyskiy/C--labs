@@ -39,15 +39,15 @@ public class TextProcessor
             }
         }
         
-        foreach (var entry in words.Values)
-        {
-            entry.Count += 1;
-        }
-        
-        foreach (var entry in concordance.Values)
-        {
-            entry.Count += 1;
-        }
+        // foreach (var entry in words.Values)
+        // {
+        //     entry.Count += 1;
+        // }
+        //
+        // foreach (var entry in concordance.Values)
+        // {
+        //     entry.Count += 1;
+        // }
 
         return (words, concordance);
     }
