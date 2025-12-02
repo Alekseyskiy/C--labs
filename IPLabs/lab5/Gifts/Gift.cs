@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using IPLabs.lab5.Sweets;
 
-namespace IPLabs.lab5.Gift;
+namespace IPLabs.lab5.Gifts;
 
 public class Gift
 {
