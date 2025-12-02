@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using IPLabs.lab5.Sweets;
@@ -23,5 +24,17 @@ public class Gift
         sweets = sweets.OrderBy(s => s.Weight).ToList();
     }
     
+    public Sweet FindSweetBySugar(double min, double max)
+    {
+        return sweets.FirstOrDefault(s => s.SugarContent >= min && s.SugarContent <= max);
+    }
     
+    public void ShowContents()
+    {
+        foreach (var sweet in sweets)
+        {
+            Console.WriteLine(sweet);
+        }
+        Console.WriteLine($"Total weight: {GetTotalWeight()}g");
+    }
 }
