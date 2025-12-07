@@ -31,6 +31,10 @@ public class Program
                 case "1":
                     AddChocolateCandy(gift);
                     break;
+                
+                case "2":
+                    AddCaramelCandy(gift);
+                    break;
             }
         }
     }
@@ -50,6 +54,21 @@ public class Program
         string type = Console.ReadLine();
 
         gift.AddSweet(new ChocolateCandy(name, weight, sugar, type));
+        Console.WriteLine("Добавлено!");
+    }
+    
+    static void AddCaramelCandy(Gift gift)
+    {
+        Console.Write("Название: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Вес: ");
+        double weight = double.Parse(Console.ReadLine());
+
+        Console.Write("Сахар: ");
+        double sugar = double.Parse(Console.ReadLine());
+
+        gift.AddSweet(new CaramelCandy(name, weight, sugar));
         Console.WriteLine("Добавлено!");
     }
     
