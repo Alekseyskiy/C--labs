@@ -37,4 +37,16 @@ public class Gift
         }
         Console.WriteLine($"Total weight: {GetTotalWeight()}g");
     }
+    
+    public void RemoveSweet(int index)
+    {
+        if (index < 0 || index >= sweets.Count)
+        {
+            Console.WriteLine("Ошибка: индекс вне диапазона!");
+            return;
+        }
+
+        sweets.RemoveAt(index);
+        Console.WriteLine("Сладость удалена.");
+    }
 }
