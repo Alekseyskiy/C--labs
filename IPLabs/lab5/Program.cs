@@ -54,6 +54,17 @@ public class Program
                 case "6":
                     FindBySugar(gift);
                     break;
+                
+                case "7":
+                    RemoveSweet(gift);
+                    break;
+                
+                case "0": 
+                    return;
+                
+                default:
+                    Console.WriteLine("Неверный ввод!");
+                    break;
             }
         }
     }
@@ -120,5 +131,14 @@ public class Program
         var result = gift.FindSweetBySugar(min, max);
 
         Console.WriteLine(result != null ? result.ToString() : "Ничего не найдено!");
+    }
+    
+    static void RemoveSweet(Gift gift)
+    {
+        Console.Write("Введите индекс сладости для удаления: ");
+        int index = int.Parse(Console.ReadLine());
+
+        gift.RemoveSweet(index);
+        Console.WriteLine("Удалено (если индекс был корректный).");
     }
 }
