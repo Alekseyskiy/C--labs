@@ -59,8 +59,8 @@
         <Compile Include="lab4\CountWords.cs" />
         <Compile Include="lab4\Program.cs" />
         <Compile Include="lab4\TextProcessor.cs" />
-        <Compile Include="lab5\Gift\Gift.cs" />
-        <Compile Include="lab5\Gift\SweetFactory.cs" />
+        <Compile Include="lab5\Gifts\Gift.cs" />
+        <Compile Include="lab5\Gifts\GiftBuilder.cs" />
         <Compile Include="lab5\Program.cs" />
         <Compile Include="lab5\Sweets\Candy\Candy.cs" />
         <Compile Include="lab5\Sweets\Candy\CaramelCandy.cs" />

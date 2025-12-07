@@ -23,6 +23,35 @@ public class Program
             Console.WriteLine("7. Удалить сладость по индексу");
             Console.WriteLine("0. Выход");
             Console.Write("Ваш выбор: ");
+            
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    AddChocolateCandy(gift);
+                    break;
+            }
         }
     }
+    
+    static void AddChocolateCandy(Gift gift)
+    {
+        Console.Write("Название: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Вес: ");
+        double weight = double.Parse(Console.ReadLine());
+
+        Console.Write("Сахар: ");
+        double sugar = double.Parse(Console.ReadLine());
+
+        Console.Write("Тип шоколада (Milk/Dark/etc.): ");
+        string type = Console.ReadLine();
+
+        gift.AddSweet(new ChocolateCandy(name, weight, sugar, type));
+        Console.WriteLine("Добавлено!");
+    }
+    
+    
 }
