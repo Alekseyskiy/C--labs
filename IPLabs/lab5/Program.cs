@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 using IPLabs.lab5.Gifts;
 using IPLabs.lab5.Sweets;
 
@@ -41,6 +42,18 @@ public class Program
                     AddCookie(gift);
                     break;
                 
+                case "4":
+                    gift.ShowContents();
+                    break;
+                
+                case "5":
+                    gift.SortByWeight();
+                    Console.WriteLine("\nОтсортировано!");
+                    break;
+                
+                case "6":
+                    FindBySugar(gift);
+                    break;
             }
         }
     }
@@ -94,5 +107,18 @@ public class Program
 
         gift.AddSweet(new Cookie(name, weight, sugar, hasChoco));
         Console.WriteLine("Добавлено!");
+    }
+    
+    static void FindBySugar(Gift gift)
+    {
+        Console.Write("Минимум сахара: ");
+        double min = double.Parse(Console.ReadLine());
+
+        Console.Write("Максимум сахара: ");
+        double max = double.Parse(Console.ReadLine());
+
+        var result = gift.FindSweetBySugar(min, max);
+
+        Console.WriteLine(result != null ? result.ToString() : "Ничего не найдено!");
     }
 }
