@@ -1,5 +1,6 @@
 using System;
 using IPLabs.lab5.Gifts;
+using IPLabs.lab5.Sweets;
 
 namespace IPLabs.lab5;
 
@@ -35,6 +36,11 @@ public class Program
                 case "2":
                     AddCaramelCandy(gift);
                     break;
+                
+                case "3":
+                    AddCookie(gift);
+                    break;
+                
             }
         }
     }
@@ -72,5 +78,21 @@ public class Program
         Console.WriteLine("Добавлено!");
     }
     
-    
+    static void AddCookie(Gift gift)
+    {
+        Console.Write("Название: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Вес: ");
+        double weight = double.Parse(Console.ReadLine());
+
+        Console.Write("Сахар: ");
+        double sugar = double.Parse(Console.ReadLine());
+
+        Console.Write("Содержит шоколад? (true/false): ");
+        bool hasChoco = bool.Parse(Console.ReadLine());
+
+        gift.AddSweet(new Cookie(name, weight, sugar, hasChoco));
+        Console.WriteLine("Добавлено!");
+    }
 }
